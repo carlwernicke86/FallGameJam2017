@@ -2,6 +2,7 @@ local collisionManager = require "game/collisionManager"
 local inputManager = require "game/inputManager"
 local cameraManager = require "game/cameraManager"
 local tiledLoader = require "game/tiledLoader"
+local playerDeath = require "game/playerDeath"
 local gameUI = require "game/gameUI"
 
 local game = {}
@@ -21,6 +22,7 @@ function game:init()
 	self.camMan = self:addSystem(cameraManager)
 	self.inputMan = self:addSystem(inputManager)
 	self.tiledLoader = self:addSystem(tiledLoader)
+	self.playerDeath = self:addSystem(playerDeath)
 
 	self.ui = self:addSystem(gameUI)
 
@@ -40,9 +42,13 @@ end
 
 function game:endLevel()
 	self.levelIndex = self.levelIndex + 1
+	self:unloadLevel()
+	self:nextLevel()
+end
+
+function game:unloadLevel()
 	self.ent = {}
 	self.colMan:resetWorld()
-	self:nextLevel()
 end
 
 function game:nextLevel()
@@ -69,6 +75,9 @@ function game:update(delta)
 				--destroy all components first
 				entity:notifyComponents("destroy")
 				table.remove(self.ent, i)
+				if entity == self.player then
+					self.playerDeath:die()
+				end
 			end
 		end
 

@@ -6,7 +6,7 @@ local healthPotion = {
 		require("comp/waterSplash");
 		require("comp/healthSplash");
 	};
-	splashColor = {r=234, g=36, b=32, a=200};
+	splashColor = {r=234, g=50, b=50, a=255};
 	vx = 0;
 	vy = -200;
 	gravity = 600;

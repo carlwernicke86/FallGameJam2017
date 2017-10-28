@@ -6,7 +6,7 @@ local waterPotion = {
 		require("comp/waterSplash");
 		require("comp/rocketSplash");
 	};
-	splashColor = {r=255, g=0, b=255, a=200};
+	splashColor = {r=255, g=50, b=255, a=255};
 	vx = 50;
 	vy = -420;
 	gravity = 1600;

@@ -21,7 +21,14 @@ function image:initialize(args)
 		local quad = args.quad
 		self:setQuad(quad.xPos, quad.yPos, quad.w, quad.h, quad.tileWidth, quad.tileHeight)
 	end
+
+	self.animation = args.animation
 	
+end
+
+function image:update(dt)
+	renderable.update(self, dt)
+	if self.animation then self.animation:update(dt) end
 end
 
 function image:setQuad(xPos, yPos, w, h, tileWidth, tileHeight)
@@ -32,10 +39,15 @@ end
 function image:draw()
 	renderable.draw(self)
 	local sx = 1; local sy = 1
-	if self.quad ~= nil then
-		love.graphics.draw(self.img, self.quad, math.floor(self.x+self.ox), math.floor(self.y+self.oy), 0, sx, sy)
+
+	if self.animation then
+		self.animation:draw(self.img, self.x+self.ox, self.y+self.oy, 0, sx, sy)
 	else
-		love.graphics.draw(self.img, self.x+self.ox, self.y+self.oy, 0, sx, sy)
+		if self.quad ~= nil then
+			love.graphics.draw(self.img, self.quad, math.floor(self.x+self.ox), math.floor(self.y+self.oy), 0, sx, sy)
+		else
+			love.graphics.draw(self.img, self.x+self.ox, self.y+self.oy, 0, sx, sy)
+		end
 	end
 end
 

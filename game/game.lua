@@ -1,6 +1,7 @@
 local collisionManager = require "game/collisionManager"
 local inputManager = require "game/inputManager"
 local cameraManager = require "game/cameraManager"
+local tiledLoader = require "game/tiledLoader"
 
 local game = {}
 
@@ -18,7 +19,7 @@ function game:init()
 	self.colMan = self:addSystem(collisionManager)
 	self.camMan = self:addSystem(cameraManager)
 	self.inputMan = self:addSystem(inputManager)
-	--self.tiledLoader = self:addSystem(tiledLoader)
+	self.tiledLoader = self:addSystem(tiledLoader)
 
 	--entities
 	self.ent = {}
@@ -28,10 +29,17 @@ end
 function game:enter()
 
 	local player = require("ent/player")
-	self.player = self:addEnt(player, {game=self})
+	self.player = self:addEnt(player, {})
 
-	local wall = require("ent/wall")
-	self:addEnt(wall, {game=self, x=0, y=200, w=500, h=10})
+	--local wall = require("ent/wall")
+	--self:addEnt(wall, {x=0, y=200, w=500, h=10})
+
+	self.tiledLoader:loadLevel("newtileset")
+
+	--other stuff
+	local phys = self.player:getComponent("physics")
+	self.camMan:setTarget(phys, phys.w/2, phys.h/2)
+	self.camMan:setPos(phys.x+phys.w/2, phys.y+phys.h/2)
 
 end
 
@@ -75,10 +83,9 @@ function game:draw()
 			for i, entity in ipairs(self.ent) do
 				for i, comp in ipairs(entity.component) do
 					if comp.drawLayer == layer then
-						--error(inspect(comp))
-						--if comp:getX()+comp:getW() > dim.x and comp:getY()+comp:getH() > dim.y and comp:getX() < dim.x+dim.w and comp:getY() < dim.y+dim.h then
+						if comp:getX()+comp:getW() > dim.x and comp:getY()+comp:getH() > dim.y and comp:getX() < dim.x+dim.w and comp:getY() < dim.y+dim.h then
 							comp:draw()
-						--end
+						end
 					end
 				end
 			end
@@ -95,6 +102,15 @@ function game:draw()
 		
 		--detach camera
 		self.camMan.cam:detach()
+
+		--draw ui
+		for i, entity in ipairs(self.ent) do
+			for i, comp in ipairs(entity.component) do
+				if comp.drawLayer == "ui" then
+					comp:draw()
+				end
+			end
+		end
 	
 	end
 

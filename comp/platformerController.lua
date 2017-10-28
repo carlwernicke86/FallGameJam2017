@@ -5,48 +5,49 @@ function platformerController:initialize(args)
 	component.initialize(self, args)
 	self.type = "platformerController"
 	
-	--TODO: actually use these
 	self.speed = args.speed or 200
-	self.friction = args.friction or 2
+	self.accel = args.accel or 16
+	self.friction = args.friction or 12
 	
-	self.jumpForce = args.jumpForce or 400
+	self.jumpForce = args.jumpForce or 420
+
+	self.lowGrav = 1000*0.8
+	self.highGrav = 4000*0.8
 	
 	self.phys = self.parent:getComponent("physics")
 end
 
 function platformerController:update(dt)
 	if not self.phys then self.phys = self.parent:getComponent("physics") end
-	if self.phys == nil then crash("platformerController error: No physics component found") end
+	if self.phys == nil then error("platformerController error: No physics component found") end
 	
 	--movement
 	local phys = self.phys
 	local input = self.game.inputMan
 
 	--x-movement
-	local accel = 2000; local maxSpeed = self.speed
-	if not phys.onGround then accel = 1200 end
+	local accel = 12; local maxSpeed = self.speed
+	if not phys.onGround then accel = 8 end
 	
 	if input:keyDown("left") and phys.vx > -maxSpeed then
-		phys:addVel(-accel*dt, 0)
+		phys.vx = phys.vx - (phys.vx + self.speed)*accel*dt
 	end
 	if input:keyDown("right") and phys.vx < maxSpeed then
-		phys:addVel(accel*dt, 0)
+		phys.vx = phys.vx - (phys.vx - self.speed)*accel*dt
 	end
 
 	--jumping/falling
 	if phys.vy > 0 then
-		phys.gravScale = 500
+		phys.gravScale = self.lowGrav
 	else
-		if input:keyDown("jump") then phys.gravScale = 500
-		else phys.gravScale = 2000 end
-		if not self.airControl then phys.gravScale = 500 end
+		if input:keyDown("jump") then phys.gravScale = self.lowGrav
+		else phys.gravScale = self.highGrav end
+		if not self.airControl then phys.gravScale = self.lowGrav end
 	end
 	
 	--friction
-	if phys.onGround then
-		if phys.vx > 0 then phys.vx = phys.vx - (600*dt)
-		else if phys.vx < 0 then phys.vx = phys.vx + (600*dt) end end
-		if phys.vx > -(600*dt) and phys.vx < (600*dt) then phys.vx = 0 end
+	if phys.onGround and not input:keyDown("left") and not input:keyDown("right") then
+		phys.vx = phys.vx - phys.vx*self.friction*dt
 	end
 	
 	--debug

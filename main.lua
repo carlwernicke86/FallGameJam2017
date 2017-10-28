@@ -40,7 +40,6 @@ function love.load()
 	}
 	audio:setVolume(settings.volume)
 	if settings.mute then audio:mute() end
-	--todo load settings
 
 	gamestate.registerEvents()
 	gamestate.switch(gameMode.mainMenu)

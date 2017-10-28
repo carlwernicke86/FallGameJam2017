@@ -23,6 +23,7 @@ function mainMenu:update(dt)
 	suit.layout:reset(love.graphics.getWidth()/2 - buttonWidth/2, love.graphics.getHeight()/2, 20, 20) --originx, originy, paddingx, paddingy
 	local start = suit.Button("START", suit.layout:row(buttonWidth,50))
 	local instructions = suit.Button("INSTRUCTIONS", suit.layout:row(buttonWidth, 50))
+	local credits = suit.Button("CREDITS", suit.layout:row(buttonWidth, 50))
 	--local volumeSlider = suit.Slider(self.slider, suit.layout:row(buttonWidth, 20))
 	
 	if instructions.entered then
@@ -30,6 +31,10 @@ function mainMenu:update(dt)
 	
 	if instructions.hit then
 		self:showInstructions()
+	end
+	
+	if credits.hit then
+		self:showCredits()
 	end
 	
 	if start.hit then
@@ -63,6 +68,10 @@ end
 
 function mainMenu:showInstructions()
 	gamestate.switch(gameMode.instructionMenu)
+end
+
+function mainMenu:showCredits()
+	gamestate.switch(gameMode.creditsMenu)
 end
 
 function mainMenu:keypressed(key)

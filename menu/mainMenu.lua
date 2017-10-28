@@ -48,6 +48,7 @@ function mainMenu:update(dt)
 end
 
 function mainMenu:draw()
+	love.graphics.setColor(100,50,255)
 	love.graphics.draw(background, 0, 0, 0, 0.8, 0.8)
 	courierCodeBold = love.graphics.newFont("/res/font/CourierCode-bold.ttf", 24)
 	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 150)

@@ -57,7 +57,7 @@ function platformerController:update(dt)
 	end
 	
 	--debug
-	if keyDown("e") then self.phys.col = false else self.phys.col = true end
+	if keyDown("e") and require("prefs").debug then self.phys.col = false else self.phys.col = true end
 	
 end
 

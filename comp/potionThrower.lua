@@ -11,14 +11,14 @@ function potionThrower:initialize(args)
 		local potions = player:getComponent("potionThrower")
 		if potions ~= nil then potions:throwPotion() end
 	end
-
 end
 
 function potionThrower:throwPotion()
 	local potion = require("ent/potion")
-	local ent = self.parent.game:addEnt(potion, {x=self.parent.phys.x+love.math.random()*50, y=self.parent.phys.y-50})
-	ent.phys.vx = self.parent.controller.faceDir*200
-	ent.phys.vy = -200
+	local playerPhys = self.parent.phys
+	local ent = self.parent.game:addEnt(potion, {x=playerPhys.x+playerPhys.w/2, y=playerPhys.y})
+	ent.phys.vx = self.parent.controller.faceDir*275+playerPhys.vx/3
+	ent.phys.vy = -250+playerPhys.vy/3
 end
 
 return potionThrower

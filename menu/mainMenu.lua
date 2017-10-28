@@ -1,6 +1,6 @@
 local suit = require "libs/suit"
 
-local background = love.graphics.newImage("res/title_img.png")
+local background = love.graphics.newImage("res/img/title_img.png")
 local buttonWidth = 200
 
 local mainMenu = {}

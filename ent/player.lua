@@ -3,9 +3,11 @@ local player = class("player", gameObject)
 
 local physics = require "comp/physics"
 local image = require "comp/render/image"
+local rectangle = require "comp/render/rectangle"
 local platformerController = require "comp/platformerController"
 local potionThrower = require "comp/potionThrower"
 local health = require "comp/health"
+local healthBarUpdate = require "comp/healthBarUpdate"
 
 function player:initialize(args)
 	gameObject.initialize(self, args)
@@ -19,12 +21,26 @@ function player:initialize(args)
 	self.controller = platformerController:new{parent=self}
 	self.potions = potionThrower:new{parent=self}
 	self.health = health:new{parent=self}
+
+	self.healthBar = rectangle:new{
+		parent=self, name="healthBar", posParent=self.phys,
+		w=60, h=10, ox=-15, oy=-35,
+		color={r=255, g=50, b=50}
+	}
+
+	self.healthBarUpdate = healthBarUpdate:new{
+		parent=self, healthBar=self.healthBar, health=self.health
+	}
 	
 	self:addComponent(self.controller)
-	self:addComponent(self.phys)
 	self:addComponent(self.img)
+	self:addComponent(self.phys)
 	self:addComponent(self.potions)
 	self:addComponent(self.health)
+
+	self:addComponent(self.healthBar)
+	self:addComponent(self.healthBarUpdate)
+
 end
 
 return player

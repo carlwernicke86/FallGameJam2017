@@ -4,7 +4,8 @@ local health = class("health", component)
 function health:initialize(args)
 	component.initialize(self, args)
 	self.type = "health"
-	self.hp = args.hp or 10
+	self.maxHP = args.maxHP or 10
+	self.hp = self.maxHP
 
 	self.burning = false
 	self.burnTime = 0

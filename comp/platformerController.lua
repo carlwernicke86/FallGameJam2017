@@ -57,12 +57,18 @@ function platformerController:update(dt)
 	end
 	
 	--debug
-	if keyDown("e") and require("prefs").debug then self.phys.col = false else self.phys.col = true end
+	if keyDown("e") and require("prefs").debug then
+		self.phys.col = false
+		self.hax = true
+	else
+		self.phys.col = true
+		self.hax = false
+	end
 	
 end
 
 function platformerController:jump()
-	if self.phys.onGround then self.phys.vy = -self.jumpForce end
+	if self.phys.onGround or self.hax then self.phys.vy = -self.jumpForce end
 end
 
 function platformerController:sideHit(args)

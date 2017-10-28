@@ -26,6 +26,10 @@ function collisionManager:update(dt)
 	
 end
 
+function collisionManager:resetWorld()
+	self.world = bump.newWorld()
+end
+
 function collisionManager:collide(e1)
 	
 	local entity = e1.parent

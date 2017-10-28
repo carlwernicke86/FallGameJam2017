@@ -24,23 +24,33 @@ function game:init()
 
 	self.ui = self:addSystem(gameUI)
 
+	self.endTasks = {}
+
 	--entities
 	self.ent = {}
+
+	self.levels = {"newtileset", "level5"}
+	self.levelIndex = 1
 
 end
 
 function game:enter()
+	self:nextLevel()
+end
 
-	--local player = require("ent/player")
-	--self.player = self:addEnt(player, {})
+function game:endLevel()
+	self.levelIndex = self.levelIndex + 1
+	self.ent = {}
+	self.colMan:resetWorld()
+	self:nextLevel()
+end
 
-	self.tiledLoader:loadLevel("newtileset")
-
-	--other stuff
+function game:nextLevel()
+	self.tiledLoader:loadLevel(self.levels[self.levelIndex])
+	
 	local phys = self.player:getComponent("physics")
 	self.camMan:setTarget(phys, phys.w/2, phys.h/2)
 	self.camMan:setPos(phys.x+phys.w/2, phys.y+phys.h/2)
-
 end
 
 function game:update(delta)
@@ -66,6 +76,11 @@ function game:update(delta)
 		for i, system in ipairs(self.system) do
 			system:update(dt)
 		end
+
+		for i, func in ipairs(self.endTasks) do
+			func()
+		end
+		self.endTasks = {}
 
 		accum = accum - 0.01
 	end

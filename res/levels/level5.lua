@@ -34,7 +34,20 @@ return {
       properties = {},
       terrains = {},
       tilecount = 100,
-      tiles = {}
+      tiles = {
+        {
+          id = 2,
+          properties = {
+            ["type"] = "fire"
+          }
+        },
+        {
+          id = 4,
+          properties = {
+            ["type"] = "exit"
+          }
+        }
+      }
     }
   },
   layers = {

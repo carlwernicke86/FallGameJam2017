@@ -38,7 +38,8 @@ function potionThrower:throwPotion()
 	local ent = self.parent.game:addEnt(potion, {
 		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y+playerPhys.h/4,
 		gravity=currentPotion.gravity, component=currentPotion.component,
-		img=currentPotion.img, splashComponents=currentPotion.splashComponents,
+		img=currentPotion.img, animation=currentPotion.animation,
+		splashComponents=currentPotion.splashComponents,
 		splashColor = currentPotion.splashColor
 	})
 	ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3

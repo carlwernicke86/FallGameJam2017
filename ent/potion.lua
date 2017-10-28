@@ -13,7 +13,10 @@ function potion:initialize(args)
 	local y = args.y-7 or 100
 
 	self.phys = physics:new{parent=self, x=x, y=y, w=13, h=15, gravity=true, gravScale=args.gravity}
-	self.img = image:new{parent=self, name="image", img=args.img, posParent=self.phys, ox=-9, oy=-6}
+	self.img = image:new{
+		parent=self, img=args.img, animation=args.animation,
+		posParent=self.phys, ox=-9, oy=-6
+	}
 	
 	self:addComponent(self.phys)
 	self:addComponent(self.img)

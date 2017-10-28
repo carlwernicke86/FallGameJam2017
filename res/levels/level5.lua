@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 6,
+  nextobjectid = 7,
   properties = {},
   tilesets = {
     {
@@ -39,6 +39,12 @@ return {
           id = 2,
           properties = {
             ["type"] = "fire"
+          }
+        },
+        {
+          id = 3,
+          properties = {
+            ["type"] = "breakableWall"
           }
         },
         {
@@ -110,6 +116,22 @@ return {
           visible = true,
           properties = {
             ["type"] = "playerStart"
+          }
+        },
+        {
+          id = 6,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 736,
+          y = 544,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["potion"] = "waterPotion",
+            ["type"] = "potionPickup"
           }
         }
       }

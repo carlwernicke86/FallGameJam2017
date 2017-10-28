@@ -17,8 +17,8 @@ function player:initialize(args)
 	local x = args.x or 100
 	local y = args.y or 100
 
-	self.phys = physics:new{parent=self, x=x, y=y, w=32, h=32, gravity=true}
-	self.img = image:new{parent=self, name="image", img="player", posParent=self.phys, ox=0, oy=0}
+	self.phys = physics:new{parent=self, x=x, y=y, w=32, h=32-6, gravity=true}
+	self.img = image:new{parent=self, name="image", img="proper player", posParent=self.phys, ox=0, oy=-6}
 	self.playerScript = playerScript:new{parent=self}
 	self.controller = platformerController:new{parent=self}
 	self.potions = potionThrower:new{parent=self}
@@ -26,7 +26,7 @@ function player:initialize(args)
 
 	self.healthBar = rectangle:new{
 		parent=self, name="healthBar", posParent=self.phys,
-		w=60, h=10, ox=-15, oy=-35,
+		w=60, h=10, ox=-15, oy=-30,
 		color={r=255, g=0, b=0}
 	}
 

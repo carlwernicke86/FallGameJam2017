@@ -33,7 +33,7 @@ function potionThrower:throwPotion()
 
 	local playerPhys = self.parent.phys
 	local ent = self.parent.game:addEnt(potion, {
-		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y,
+		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y+playerPhys.h/4,
 		gravity=currentPotion.gravity, component=currentPotion.component,
 		img=currentPotion.img, splashComponents=currentPotion.splashComponents,
 		splashColor = currentPotion.splashColor

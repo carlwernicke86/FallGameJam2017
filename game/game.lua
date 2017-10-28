@@ -2,6 +2,7 @@ local collisionManager = require "game/collisionManager"
 local inputManager = require "game/inputManager"
 local cameraManager = require "game/cameraManager"
 local tiledLoader = require "game/tiledLoader"
+local gameUI = require "game/gameUI"
 
 local game = {}
 
@@ -21,26 +22,45 @@ function game:init()
 	self.inputMan = self:addSystem(inputManager)
 	self.tiledLoader = self:addSystem(tiledLoader)
 
+	self.ui = self:addSystem(gameUI)
+
+	self.endTasks = {}
+
 	--entities
 	self.ent = {}
+
+	self.levels = {"newtileset", "level5"}
+	self.levelIndex = 1
 
 end
 
 function game:enter()
+	self:nextLevel()
+end
 
+<<<<<<< HEAD
 	local player = require("ent/player")
 	self.player = self:addEnt(player, {})
 
 	--local wall = require("ent/wall")
 	--self:addEnt(wall, {x=0, y=200, w=500, h=10})
 
-	self.tiledLoader:loadLevel("level5")
+	self.tiledLoader:loadLevel("newtileset")
+=======
+function game:endLevel()
+	self.levelIndex = self.levelIndex + 1
+	self.ent = {}
+	self.colMan:resetWorld()
+	self:nextLevel()
+end
+>>>>>>> 755f089ac63f50334ec1131d63ba55ab178825e9
 
-	--other stuff
+function game:nextLevel()
+	self.tiledLoader:loadLevel(self.levels[self.levelIndex])
+	
 	local phys = self.player:getComponent("physics")
 	self.camMan:setTarget(phys, phys.w/2, phys.h/2)
 	self.camMan:setPos(phys.x+phys.w/2, phys.y+phys.h/2)
-
 end
 
 function game:update(delta)
@@ -66,6 +86,11 @@ function game:update(delta)
 		for i, system in ipairs(self.system) do
 			system:update(dt)
 		end
+
+		for i, func in ipairs(self.endTasks) do
+			func()
+		end
+		self.endTasks = {}
 
 		accum = accum - 0.01
 	end
@@ -110,6 +135,10 @@ function game:draw()
 					comp:draw()
 				end
 			end
+		end
+
+		for i, system in ipairs(self.system) do
+			if system.draw then system:draw() end
 		end
 	
 	end

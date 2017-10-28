@@ -10,7 +10,7 @@ function potionThrower:initialize(args)
 	local waterPotion = require("game/potionData/waterPotion")
 	local healthPotion = require("game/potionData/healthPotion")
 	self.potions = {waterPotion, healthPotion}
-	self.ingredients = {1, 1}
+	self.charge = {1, 1}
 	self.potionIndex = 1
 
 	--register a new input mapping for throwing potions
@@ -33,7 +33,7 @@ function potionThrower:throwPotion()
 
 	local playerPhys = self.parent.phys
 	local ent = self.parent.game:addEnt(potion, {
-		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y,
+		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y+playerPhys.h/4,
 		gravity=currentPotion.gravity, component=currentPotion.component,
 		img=currentPotion.img, splashComponents=currentPotion.splashComponents,
 		splashColor = currentPotion.splashColor

@@ -1,10 +1,11 @@
 local waterPotion = {
+	name = "Water Potion";
 	img = "potion";
 	component = require("comp/potionComponent");
 	splashComponents = {
 		require("comp/waterSplash");
 	};
-	splashColor = {r=100, g=100, b=255};
+	splashColor = {r=100, g=100, b=255, a=200};
 	vx = 275;
 	vy = -225;
 	gravity = 800;

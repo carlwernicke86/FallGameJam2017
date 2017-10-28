@@ -8,7 +8,7 @@ return {
   height = 35,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 3,
+  nextobjectid = 5,
   properties = {},
   tilesets = {
     {
@@ -131,6 +131,38 @@ return {
           visible = true,
           properties = {
             ["type"] = "playerStart"
+          }
+        },
+        {
+          id = 3,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 608,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["potion"] = "waterPotion",
+            ["type"] = "potionPickup"
+          }
+        },
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 1472,
+          y = 448,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["potion"] = "healthPotion",
+            ["type"] = "potionPickup"
           }
         }
       }

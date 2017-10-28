@@ -5,6 +5,7 @@ local physics = require "comp/physics"
 local image = require "comp/render/image"
 local platformerController = require "comp/platformerController"
 local potionThrower = require "comp/potionThrower"
+local health = require "comp/health"
 
 function player:initialize(args)
 	gameObject.initialize(self, args)
@@ -16,12 +17,14 @@ function player:initialize(args)
 	self.phys = physics:new{parent=self, x=x, y=y, w=32, h=32, gravity=true}
 	self.img = image:new{parent=self, name="image", img="player", posParent=self.phys, ox=0, oy=0}
 	self.controller = platformerController:new{parent=self}
-	self.potions = potionThrower:new({parent=self})
+	self.potions = potionThrower:new{parent=self}
+	self.health = health:new{parent=self}
 	
 	self:addComponent(self.controller)
 	self:addComponent(self.phys)
 	self:addComponent(self.img)
 	self:addComponent(self.potions)
+	self:addComponent(self.health)
 end
 
 return player

@@ -32,7 +32,12 @@ function tiledLoader:loadLevel(name)
 		for y=1, h do
 			for x=1, w do
 				if data[y][x] ~= nil then
-					self:spawnTile(data[y][x], x, y, tilewidth, tileheight, currentTileset.name)
+					local properties = map:getTileProperties(layer.name, x, y)
+					if properties.type == nil then
+						self:spawnTile(data[y][x], x, y, tilewidth, tileheight, currentTileset.name, properties)
+					else
+						self:spawnSpecialTile(data[y][x], x, y, tilewidth, tileheight, properties)
+					end
 				end
 			end
 		end
@@ -50,18 +55,22 @@ function tiledLoader:loadLevel(name)
 	
 end
 
-function tiledLoader:spawnTile(tile, x, y, tilewidth, tileheight, tileset)
+function tiledLoader:spawnTile(tile, x, y, w, h, tileset, properties)
 	local ix, iy = imgMan.getIndex(10, tile.id)
 	local args = {
 		game = self.game, col = col,
-		x = x*tilewidth-tilewidth, y = y*tileheight-tileheight,
+		x = x*w-w, y = y*h-h,
 		w = tonumber(tile.width), h = tonumber(tile.height),
 		img = tileset,
 		quad = {xPos=ix, yPos=iy, w=32, h=32, tileWidth=32, tileHeight=32}
 	}
 	local wall = require("ent/wall")
-	local ent = self.game:addEnt(wall, args)
-	--error(inspect(ent.img))
+	self.game:addEnt(wall, args)
+end
+
+function tiledLoader:spawnSpecialTile(tile, x, y, w, h, properties)
+	local class = require("ent/" .. tile.properties.type)
+	self.game:addEnt(class, lume.merge({x=x*w-w, y=y*h-h}, properties))
 end
 
 function tiledLoader:spawnObject(object)
@@ -71,7 +80,7 @@ function tiledLoader:spawnObject(object)
 		w = object.width, h = object.height,
 		img = "tile1"
 	}
-	local ent = self.game:addEnt(wall, args)
+	self.game:addEnt(wall, args)
 end
 
 function tiledLoader:update()

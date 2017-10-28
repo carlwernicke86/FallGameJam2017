@@ -23,7 +23,7 @@ function topDownController:update(dt)
 	if input:keyDown("right") then movDir.x = movDir.x + 1 end
 	if input:keyDown("up") then movDir.y = movDir.y - 1 end
 	if input:keyDown("down") then movDir.y = movDir.y + 1 end
-	
+
 	--movement
 	local xMove = 0; local yMove = 0
 

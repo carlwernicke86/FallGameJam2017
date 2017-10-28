@@ -14,6 +14,7 @@ audio = require "audio"
 --gamestates
 gameMode = {}
 gameMode.mainMenu = require "menu/mainMenu"
+gameMode.erased = require "menu/erased"
 gameMode.game = require "game/game"
 gameMode.instructionMenu = require "menu/instructionMenu"
 
@@ -43,7 +44,11 @@ function love.load()
 	if settings.mute then audio:mute() end
 
 	gamestate.registerEvents()
-	gamestate.switch(gameMode.mainMenu)
+	if not love.filesystem.isFile("save.txt") then
+		gamestate.switch(gameMode.mainMenu)
+	else
+		gamestate.switch(gameMode.erased)
+	end
 
 end
 
@@ -60,7 +65,10 @@ function love.draw()
 end
 
 function love.keypressed(key)
-	if key == "escape" then love.event.quit() end
+	if key == "escape" then 
+		love.filesystem.remove("save.txt")
+		love.event.quit()
+	end
 end
 
 function debug(msg, dur, cat)

@@ -16,6 +16,7 @@ gameMode = {}
 gameMode.mainMenu = require "menu/mainMenu"
 gameMode.game = require "game/game"
 gameMode.instructionMenu = require "menu/instructionMenu"
+gameMode.creditsMenu = require "menu/creditsMenu"
 
 --other things
 debugger = require "debugger"

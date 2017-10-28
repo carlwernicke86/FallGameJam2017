@@ -13,6 +13,8 @@ function platformerController:initialize(args)
 
 	self.lowGrav = 1000*0.8
 	self.highGrav = 4000*0.8
+
+	self.faceDir = 1
 	
 	self.phys = self.parent:getComponent("physics")
 end
@@ -28,12 +30,16 @@ function platformerController:update(dt)
 	--x-movement
 	local accel = 12; local maxSpeed = self.speed
 	if not phys.onGround then accel = 8 end
-	
-	if input:keyDown("left") and phys.vx > -maxSpeed then
-		phys.vx = phys.vx - (phys.vx + self.speed)*accel*dt
-	end
-	if input:keyDown("right") and phys.vx < maxSpeed then
-		phys.vx = phys.vx - (phys.vx - self.speed)*accel*dt
+
+	local moveDir = 0
+	if input:keyDown("left") then moveDir = moveDir - 1 end
+	if input:keyDown("right") then moveDir = moveDir + 1 end
+
+	if moveDir < 0 then self.faceDir = -1 end
+	if moveDir > 0 then self.faceDir = 1 end
+
+	if moveDir ~= 0 then
+		phys.vx = phys.vx - (phys.vx - self.speed*moveDir)*accel*dt
 	end
 
 	--jumping/falling
@@ -51,7 +57,7 @@ function platformerController:update(dt)
 	end
 	
 	--debug
-	if keyDown("e") then self.phys.col = false else self.phys.col = true end
+	if keyDown("e") and require("prefs").debug then self.phys.col = false else self.phys.col = true end
 	
 end
 

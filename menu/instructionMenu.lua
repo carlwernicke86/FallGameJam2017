@@ -5,6 +5,7 @@ local playerImage = love.graphics.newImage("res/img/proper player.png")
 local potionImage = love.graphics.newImage("res/img/potion.png")
 local endImage = love.graphics.newImage("res/img/exit block.png")
 local fireImage = love.graphics.newImage("res/img/fire.png")
+local crackedImage = love.graphics.newImage("res/img/cracked grey tile.png")
 
 local instructionMenu = {}
 
@@ -33,6 +34,7 @@ function instructionMenu:draw()
 	love.graphics.draw(potionImage, 150, 295, 0, 3, 3)
 	love.graphics.draw(endImage, 150, 350, 0, 3, 3)
 	love.graphics.draw(fireImage, 150, 425, 0, 3, 3)
+	love.graphics.draw(crackedImage, 150, 515, 0, 3, 3)
 	
 	love.graphics.setColor(100, 50, 255)
 	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 50)
@@ -40,6 +42,7 @@ function instructionMenu:draw()
 	love.graphics.print("= POTION", 275, 300)
 	love.graphics.print("= END", 275, 375)
 	love.graphics.print("= FIRE", 275, 450)
+	love.graphics.print("= BREAK", 275, 525)
 	
 	love.graphics.print("-> = RIGHT", 600, 225)
 	love.graphics.print("<- = LEFT", 600, 300)

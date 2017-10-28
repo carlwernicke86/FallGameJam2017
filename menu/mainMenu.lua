@@ -24,6 +24,9 @@ function mainMenu:update(dt)
 	local instructions = suit.Button("INSTRUCTIONS", suit.layout:row(buttonWidth, 50))
 	--local volumeSlider = suit.Slider(self.slider, suit.layout:row(buttonWidth, 20))
 	
+	if instructions.entered then
+	end
+	
 	if instructions.hit then
 		self:showInstructions()
 	end
@@ -39,12 +42,12 @@ function mainMenu:update(dt)
 end
 
 function mainMenu:draw()
-	love.graphics.draw(background, 0, 0)
+	love.graphics.draw(background, 0, 0, 0, 0.8, 0.8)
 	courierCodeBold = love.graphics.newFont("/res/font/CourierCode-bold.ttf", 24)
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 50)
+	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 150)
 	love.graphics.setColor(100,50,255)
 	local w = love.graphics.getFont():getWidth("CAVE GAME")
-	love.graphics.printf("CAVE GAME", love.graphics.getWidth()/2-w/2, love.graphics.getHeight()/4, 350, 'left')
+	love.graphics.printf("CAVE GAME", love.graphics.getWidth()/2-w/2, love.graphics.getHeight()/4, 7000, 'left')
 	
 	love.graphics.setFont(courierCodeBold)
 	suit.draw()

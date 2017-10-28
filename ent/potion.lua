@@ -20,7 +20,7 @@ function potion:initialize(args)
 	
 	self:addComponent(self.phys)
 	self:addComponent(self.img)
-	self:addComponent(destroyOnTouch:new{parent=self})
+	--self:addComponent(destroyOnTouch:new{parent=self})
 	self:addComponent(args.component:new{
 		parent=self, splashComponents=args.splashComponents,
 		splashColor=args.splashColor

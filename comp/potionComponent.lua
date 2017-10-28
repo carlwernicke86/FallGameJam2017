@@ -19,4 +19,13 @@ function potionComponent:destroy(args)
 	})
 end
 
+function potionComponent:sideHit(col)
+	if col.side ~= "down" and col.side ~= "in" then
+		self.parent.die = true
+	end
+	if col.side == "in" then
+		self.parent.phys.vy = 100
+	end
+end
+
 return potionComponent

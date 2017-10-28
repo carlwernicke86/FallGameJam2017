@@ -69,7 +69,7 @@ function physics:hitSide(other, side)
 	end
 	if side == "up" then
 		self.y = other.y - self.h
-		if self.gravity == true then self.onGround = true; self.vy = 0.001
+		if self.gravity == true then self.onGround = true; if self.vy >= 0 then self.vy = 0.001 end
 		else self.vy = other.vy end
 	end
 	if side == "down" then

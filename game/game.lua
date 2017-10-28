@@ -38,22 +38,12 @@ function game:enter()
 	self:nextLevel()
 end
 
-<<<<<<< HEAD
-	local player = require("ent/player")
-	self.player = self:addEnt(player, {})
-
-	--local wall = require("ent/wall")
-	--self:addEnt(wall, {x=0, y=200, w=500, h=10})
-
-	self.tiledLoader:loadLevel("newtileset")
-=======
 function game:endLevel()
 	self.levelIndex = self.levelIndex + 1
 	self.ent = {}
 	self.colMan:resetWorld()
 	self:nextLevel()
 end
->>>>>>> 755f089ac63f50334ec1131d63ba55ab178825e9
 
 function game:nextLevel()
 	self.tiledLoader:loadLevel(self.levels[self.levelIndex])

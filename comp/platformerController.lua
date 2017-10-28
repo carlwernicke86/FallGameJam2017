@@ -7,7 +7,7 @@ function platformerController:initialize(args)
 	
 	self.speed = args.speed or 200
 	self.accel = args.accel or 16
-	self.friction = args.friction or 8
+	self.friction = args.friction or 12
 	
 	self.jumpForce = args.jumpForce or 450
 

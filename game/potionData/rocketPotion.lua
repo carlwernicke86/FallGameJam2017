@@ -2,7 +2,7 @@ local anim8 = require "libs/anim8"
 local grid = anim8.newGrid(32, 32, 96, 96)
 local animation = anim8.newAnimation(grid('1-3','1-3'), 0.1)
 
-local waterPotion = {
+local rocketPotion = {
 	name = "Propulsion Potion";
 	img = "rocket jump potion";
 	animation = animation;
@@ -23,4 +23,4 @@ local waterPotion = {
 	gravity = 1600;
 }
 
-return waterPotion
+return rocketPotion

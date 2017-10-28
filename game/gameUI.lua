@@ -5,6 +5,7 @@ function gameUI:initialize(parent)
 	self.player = nil
 	self.hpDisplay = 0
 	self.display = "Current potion: none"
+	self.endGame = false
 end
 
 function gameUI:reset()
@@ -20,6 +21,8 @@ function gameUI:update(dt)
 			self.display = "Current potion: " .. currentPotion.name
 		end
 	end
+
+	if self.endGame then self.display = "ERASING GAME..." end
 end
 
 function gameUI:draw()

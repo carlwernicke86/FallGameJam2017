@@ -10,6 +10,11 @@ end
 
 function healthBarUpdate:update(dt)
 	self.healthBar.w = (self.health.hp/self.health.maxHP)*self.maxWidth
+	if self.health.hp >= self.health.maxHP then
+		self.healthBar.color.a = 0
+	else
+		self.healthBar.color.a = 255
+	end
 end
 
 return healthBarUpdate

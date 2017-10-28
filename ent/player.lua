@@ -13,8 +13,8 @@ function player:initialize(args)
 	local x = args.x or 100
 	local y = args.y or 100
 
-	self.phys = physics:new{parent=self, x=x, y=y, w=48, h=48, gravity=true}
-	self.img = image:new{parent=self, name="image", img="player", posParent=self.phys, ox=-2, oy=-2}
+	self.phys = physics:new{parent=self, x=x, y=y, w=32, h=32, gravity=true}
+	self.img = image:new{parent=self, name="image", img="player", posParent=self.phys, ox=0, oy=0}
 	self.controller = platformerController:new{parent=self}
 	self.potions = potionThrower:new({parent=self})
 	

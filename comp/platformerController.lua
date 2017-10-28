@@ -9,10 +9,10 @@ function platformerController:initialize(args)
 	self.accel = args.accel or 16
 	self.friction = args.friction or 12
 	
-	self.jumpForce = args.jumpForce or 450
+	self.jumpForce = args.jumpForce or 420
 
-	self.lowGrav = 1000
-	self.highGrav = 4000
+	self.lowGrav = 1000*0.8
+	self.highGrav = 4000*0.8
 	
 	self.phys = self.parent:getComponent("physics")
 end

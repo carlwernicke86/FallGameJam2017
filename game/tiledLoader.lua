@@ -74,13 +74,11 @@ function tiledLoader:spawnSpecialTile(tile, x, y, w, h, properties)
 end
 
 function tiledLoader:spawnObject(object)
-	--[[local args = {
-		game = self.game,
-		x = object.x, y = object.y, col = false,
-		w = object.width, h = object.height,
-		img = "tile1"
-	}
-	self.game:addEnt(wall, args)]]
+	if object.properties.type == "playerStart" then
+		local player = require("ent/player")
+		local ent = self.game:addEnt(player, {x=object.x, y=object.y})
+		self.game.player = ent
+	end
 end
 
 function tiledLoader:update()

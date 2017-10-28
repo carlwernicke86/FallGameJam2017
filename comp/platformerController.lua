@@ -5,9 +5,9 @@ function platformerController:initialize(args)
 	component.initialize(self, args)
 	self.type = "platformerController"
 	
-	--TODO: actually use these
 	self.speed = args.speed or 200
-	self.friction = args.friction or 2
+	self.accel = args.accel or 16
+	self.friction = args.friction or 8
 	
 	self.jumpForce = args.jumpForce or 450
 
@@ -26,14 +26,14 @@ function platformerController:update(dt)
 	local input = self.game.inputMan
 
 	--x-movement
-	local accel = 2000; local maxSpeed = self.speed
-	if not phys.onGround then accel = 1200 end
+	local accel = 12; local maxSpeed = self.speed
+	if not phys.onGround then accel = 8 end
 	
 	if input:keyDown("left") and phys.vx > -maxSpeed then
-		phys:addVel(-accel*dt, 0)
+		phys.vx = phys.vx - (phys.vx + self.speed)*accel*dt
 	end
 	if input:keyDown("right") and phys.vx < maxSpeed then
-		phys:addVel(accel*dt, 0)
+		phys.vx = phys.vx - (phys.vx - self.speed)*accel*dt
 	end
 
 	--jumping/falling
@@ -46,10 +46,8 @@ function platformerController:update(dt)
 	end
 	
 	--friction
-	if phys.onGround then
-		if phys.vx > 0 then phys.vx = phys.vx - (600*dt)
-		else if phys.vx < 0 then phys.vx = phys.vx + (600*dt) end end
-		if phys.vx > -(600*dt) and phys.vx < (600*dt) then phys.vx = 0 end
+	if phys.onGround and not input:keyDown("left") and not input:keyDown("right") then
+		phys.vx = phys.vx - phys.vx*self.friction*dt
 	end
 	
 	--debug

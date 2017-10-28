@@ -10,9 +10,9 @@ function potionComponent:initialize(args)
 end
 
 function potionComponent:destroy(args)
-	--local parent = self.parent
-	--local phys = parent.phys
-	--local ent = parent.game:addEnt(splash, {x=phys.x+phys.w/2-20, y=phys.y+phys.h/2-45, color=self.color})
+	local parent = self.parent
+	local phys = parent.phys
+	local ent = parent.game:addEnt(splash, {x=phys.x+phys.w/2-20, y=phys.y+phys.h/2-30, color=self.color})
 end
 
 return potionComponent

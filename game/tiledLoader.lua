@@ -1,6 +1,6 @@
 local sti = require "libs/sti"
 
-tiledLoader = class("tiledLoader")
+local tiledLoader = class("tiledLoader")
 
 tiledLoader.static.path = {prefix = "res/levels/", suffix = ".lua"}
 
@@ -32,7 +32,7 @@ function tiledLoader:loadLevel(name)
 		for y=1, h do
 			for x=1, w do
 				if data[y][x] ~= nil then
-					self:spawnTile(data[y][x])
+					self:spawnTile(data[y][x], x, y, tilewidth, tileheight, currentTileset.name)
 				end
 			end
 		end
@@ -50,16 +50,18 @@ function tiledLoader:loadLevel(name)
 	
 end
 
-function tiledLoader:spawnTile(tile)
-	local ix, iy = imgMan.getIndex(6, tile.id) --TODO: calculate tileset width
+function tiledLoader:spawnTile(tile, x, y, tilewidth, tileheight, tileset)
+	local ix, iy = imgMan.getIndex(10, tile.id)
 	local args = {
 		game = self.game, col = col,
 		x = x*tilewidth-tilewidth, y = y*tileheight-tileheight,
 		w = tonumber(tile.width), h = tonumber(tile.height),
-		img = currentTileset.name,
-		quad = {xPos=ix, yPos=iy, w=16, h=16, tileWidth=16, tileHeight=16} --TODO: get tilewidth/height
+		img = tileset,
+		quad = {xPos=ix, yPos=iy, w=32, h=32, tileWidth=32, tileHeight=32}
 	}
+	local wall = require("ent/wall")
 	local ent = self.game:addEnt(wall, args)
+	--error(inspect(ent.img))
 end
 
 function tiledLoader:spawnObject(object)
@@ -74,3 +76,5 @@ end
 
 function tiledLoader:update()
 end
+
+return tiledLoader

@@ -3,6 +3,7 @@ local wall = class("wall", gameObject)
 
 local physics = require "comp/physics"
 local rectangle = require "comp/render/rectangle"
+local image = require "comp/render/image"
 
 function wall:initialize(args)
 	gameObject.initialize(self, args)
@@ -14,14 +15,14 @@ function wall:initialize(args)
 	local phys = physics:new({parent=self, x=args.x, y=args.y, w=args.w or 50, h=args.h or 50, col=false, solidity=solidity})
 	
 	if args.img ~= nil then
-		local img = image:new({parent=self, img=args.img, posParent=phys, quad=args.quad})
+		self.img = image:new({parent=self, img=args.img, posParent=phys, quad=args.quad})
+		self:addComponent(self.img)
 	else
-		local rect = rectangle:new({parent=self, x=args.x, y=args.y, w=args.w, h=args.h})
+		self.rect = rectangle:new({parent=self, x=args.x, y=args.y, w=args.w, h=args.h})
 		if solidity == nil then rect.color.a = 100 end
-		self:addComponent(rect)
+		self:addComponent(self.rect)
 	end
-	
-	self:addComponent(img)
+
 	self:addComponent(phys)
 end
 

@@ -17,7 +17,7 @@ end
 function health:update(dt)
 
 	if self.burning then
-		self.hp = self.hp - 5*dt
+		self.hp = self.hp - 6*dt
 		self.burnTime = self.burnTime - dt
 		if self.burnTime <= 0 then self.burning = false end
 	end

@@ -42,6 +42,12 @@ return {
           }
         },
         {
+          id = 3,
+          properties = {
+            ["type"] = "breakableWall"
+          }
+        },
+        {
           id = 4,
           properties = {
             ["type"] = "exit"

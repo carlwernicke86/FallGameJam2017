@@ -14,12 +14,12 @@ return {
     {
       name = "tileset",
       firstgid = 1,
-      filename = "../../Documents/GitHub/Fall2017/res/tilesets/tileset.tsx",
+      filename = "../tilesets/tileset.tsx",
       tilewidth = 32,
       tileheight = 32,
       spacing = 0,
       margin = 0,
-      image = "../../Documents/GitHub/Fall2017/res/img/tileset.png",
+      image = "../img/tileset.png",
       imagewidth = 320,
       imageheight = 320,
       tileoffset = {
@@ -34,7 +34,26 @@ return {
       properties = {},
       terrains = {},
       tilecount = 100,
-      tiles = {}
+      tiles = {
+        {
+          id = 2,
+          properties = {
+            ["type"] = "fire"
+          }
+        },
+        {
+          id = 3,
+          properties = {
+            ["type"] = "breakableWall"
+          }
+        },
+        {
+          id = 4,
+          properties = {
+            ["type"] = "exit"
+          }
+        }
+      }
     }
   },
   layers = {

@@ -144,6 +144,11 @@ function game:draw()
 
 function game:keypressed(key)
 	self.inputMan:keypressed(key)
+
+	if key == "r" then
+		self:unloadLevel()
+		self:nextLevel()
+	end
 end
 
 function game:mousepressed(button)

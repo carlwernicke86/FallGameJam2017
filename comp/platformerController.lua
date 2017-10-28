@@ -9,7 +9,10 @@ function platformerController:initialize(args)
 	self.speed = args.speed or 200
 	self.friction = args.friction or 2
 	
-	self.jumpForce = args.jumpForce or 400
+	self.jumpForce = args.jumpForce or 450
+
+	self.lowGrav = 1000
+	self.highGrav = 4000
 	
 	self.phys = self.parent:getComponent("physics")
 end
@@ -35,11 +38,11 @@ function platformerController:update(dt)
 
 	--jumping/falling
 	if phys.vy > 0 then
-		phys.gravScale = 500
+		phys.gravScale = self.lowGrav
 	else
-		if input:keyDown("jump") then phys.gravScale = 500
-		else phys.gravScale = 2000 end
-		if not self.airControl then phys.gravScale = 500 end
+		if input:keyDown("jump") then phys.gravScale = self.lowGrav
+		else phys.gravScale = self.highGrav end
+		if not self.airControl then phys.gravScale = self.lowGrav end
 	end
 	
 	--friction

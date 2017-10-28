@@ -28,10 +28,10 @@ end
 function game:enter()
 
 	local player = require("ent/player")
-	self.player = self:addEnt(player, {game=self})
+	self.player = self:addEnt(player, {})
 
 	local wall = require("ent/wall")
-	self:addEnt(wall, {game=self, x=0, y=200, w=500, h=10})
+	self:addEnt(wall, {x=0, y=200, w=500, h=10})
 
 end
 

@@ -17,24 +17,34 @@ function potionThrower:initialize(args)
 	self.parent.game.inputMan.map["attack"] = function()
 		local player = self.parent.game.player
 		local potions = player:getComponent("potionThrower")
-		if potions ~= nil then potions:throwPotion() end
+		if potions ~= nil and (not player.die) then potions:throwPotion() end
 	end
+
+	self.parent.game.inputMan.map["switch"] = function()
+		local player = self.parent.game.player
+		local potions = player:getComponent("potionThrower")
+		if potions ~= nil and (not player.die) then potions:switchPotion() end
+	end
+
 end
 
 function potionThrower:throwPotion()
 	local currentPotion = self.potions[self.potionIndex]
 
-	if not self.parent.die then
-		local playerPhys = self.parent.phys
-		local ent = self.parent.game:addEnt(potion, {
-			x=playerPhys.x+playerPhys.w/2, y=playerPhys.y,
-			gravity=currentPotion.gravity, component=currentPotion.component,
-			img=currentPotion.img, splashComponents=currentPotion.splashComponents,
-			splashColor = currentPotion.splashColor
-		})
-		ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
-		ent.phys.vy = currentPotion.vy+playerPhys.vy/2
-	end
+	local playerPhys = self.parent.phys
+	local ent = self.parent.game:addEnt(potion, {
+		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y,
+		gravity=currentPotion.gravity, component=currentPotion.component,
+		img=currentPotion.img, splashComponents=currentPotion.splashComponents,
+		splashColor = currentPotion.splashColor
+	})
+	ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
+	ent.phys.vy = currentPotion.vy+playerPhys.vy/2
+end
+
+function potionThrower:switchPotion()
+	self.potionIndex = self.potionIndex + 1
+	if self.potionIndex > #self.potions then self.potionIndex = 1 end
 end
 
 return potionThrower

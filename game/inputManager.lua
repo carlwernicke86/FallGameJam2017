@@ -6,6 +6,7 @@ function inputManager:initialize(parent)
 	self.bind = {
 		z = "jump",
 		x = "attack",
+		c = "switch",
 		left = "left",
 		right = "right",
 		up = "up",

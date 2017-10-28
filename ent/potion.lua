@@ -4,6 +4,7 @@ local potion = class("potion", gameObject)
 local physics = require "comp/physics"
 local image = require "comp/render/image"
 local destroyOnTouch = require "comp/destroyOnTouch"
+local potionComponent = require "comp/potionComponent"
 
 function potion:initialize(args)
 	gameObject.initialize(self, args)
@@ -18,6 +19,7 @@ function potion:initialize(args)
 	self:addComponent(self.phys)
 	self:addComponent(self.img)
 	self:addComponent(destroyOnTouch:new{parent=self})
+	self:addComponent(potionComponent:new{parent=self})
 end
 
 return potion

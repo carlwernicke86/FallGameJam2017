@@ -75,10 +75,9 @@ function game:draw()
 			for i, entity in ipairs(self.ent) do
 				for i, comp in ipairs(entity.component) do
 					if comp.drawLayer == layer then
-						--error(inspect(comp))
-						--if comp:getX()+comp:getW() > dim.x and comp:getY()+comp:getH() > dim.y and comp:getX() < dim.x+dim.w and comp:getY() < dim.y+dim.h then
+						if comp:getX()+comp:getW() > dim.x and comp:getY()+comp:getH() > dim.y and comp:getX() < dim.x+dim.w and comp:getY() < dim.y+dim.h then
 							comp:draw()
-						--end
+						end
 					end
 				end
 			end
@@ -95,6 +94,15 @@ function game:draw()
 		
 		--detach camera
 		self.camMan.cam:detach()
+
+		--draw ui
+		for i, entity in ipairs(self.ent) do
+			for i, comp in ipairs(entity.component) do
+				if comp.drawLayer == "ui" then
+					comp:draw()
+				end
+			end
+		end
 	
 	end
 

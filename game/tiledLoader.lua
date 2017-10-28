@@ -79,6 +79,10 @@ function tiledLoader:spawnObject(object)
 		local ent = self.game:addEnt(player, {x=object.x, y=object.y})
 		self.game.player = ent
 	end
+	if object.properties.type == "potionPickup" then
+		local pickup = require("ent/potionPickup")
+		self.game:addEnt(pickup, {x=object.x, y=object.y, potion=object.properties.potion})
+	end
 end
 
 function tiledLoader:update()

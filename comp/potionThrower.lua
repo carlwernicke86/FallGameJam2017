@@ -10,7 +10,7 @@ function potionThrower:initialize(args)
 	local waterPotion = require("game/potionData/waterPotion")
 	local healthPotion = require("game/potionData/healthPotion")
 	local rocketPotion = require("game/potionData/rocketPotion")
-	self.potions = {waterPotion, healthPotion, rocketPotion}
+	self.potions = {}
 	self.charge = {1, 1}
 	self.potionIndex = 1
 
@@ -27,23 +27,31 @@ function potionThrower:initialize(args)
 		if potions ~= nil and (not player.die) then potions:switchPotion() end
 	end
 
-	self:setPlayerColor()
+	--self:setPlayerColor()
 
 end
 
-function potionThrower:throwPotion()
-	local currentPotion = self.potions[self.potionIndex]
+function potionThrower:getPotion(potion)
+	self.potions[#self.potions+1] = potion
+	self.potionIndex = #self.potions
+	self:setPlayerColor()
+end
 
-	local playerPhys = self.parent.phys
-	local ent = self.parent.game:addEnt(potion, {
-		x=playerPhys.x+playerPhys.w/2, y=playerPhys.y+playerPhys.h/4,
-		gravity=currentPotion.gravity, component=currentPotion.component,
-		img=currentPotion.img, animation=currentPotion.animation,
-		splashComponents=currentPotion.splashComponents,
-		splashColor = currentPotion.splashColor
-	})
-	ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
-	ent.phys.vy = currentPotion.vy+playerPhys.vy/2
+function potionThrower:throwPotion()
+	if #self.potions > 0 then
+		local currentPotion = self.potions[self.potionIndex]
+
+		local playerPhys = self.parent.phys
+		local ent = self.parent.game:addEnt(potion, {
+			x=playerPhys.x+playerPhys.w/2, y=playerPhys.y+playerPhys.h/4,
+			gravity=currentPotion.gravity, component=currentPotion.component,
+			img=currentPotion.img, animation=currentPotion.animation,
+			splashComponents=currentPotion.splashComponents,
+			splashColor = currentPotion.splashColor
+		})
+		ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
+		ent.phys.vy = currentPotion.vy+playerPhys.vy/2
+	end
 end
 
 function potionThrower:switchPotion()
@@ -53,17 +61,19 @@ function potionThrower:switchPotion()
 end
 
 function potionThrower:setPlayerColor()
-	local player = self.parent
-	local potion = self.potions[self.potionIndex]
+	if #self.potions > 0 then
+		local player = self.parent
+		local potion = self.potions[self.potionIndex]
 
-	if potion.playerAnimation then
-		player.overlay.img = potion.playerAnimImg
-		player.overlay.color = {r=255,g=255,b=255}
-		player.overlay.animation = potion.playerAnimation
-	else
-		player.overlay.img = getImg("playerOverlay")
-		player.overlay.color = potion.splashColor
-		player.overlay.animation = nil
+		if potion.playerAnimation then
+			player.overlay.img = potion.playerAnimImg
+			player.overlay.color = {r=255,g=255,b=255}
+			player.overlay.animation = potion.playerAnimation
+		else
+			player.overlay.img = getImg("playerOverlay")
+			player.overlay.color = potion.splashColor
+			player.overlay.animation = nil
+		end
 	end
 end
 

@@ -49,6 +49,7 @@ end
 function game:unloadLevel()
 	self.ent = {}
 	self.colMan:resetWorld()
+	self.ui:reset()
 end
 
 function game:nextLevel()

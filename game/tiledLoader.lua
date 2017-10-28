@@ -12,7 +12,7 @@ end
 function tiledLoader:loadLevel(name)
 	local map = sti.new(tiledLoader.path.prefix .. name .. tiledLoader.path.suffix)
 	
-	local tileset = map.tilesets[1] --TODO: add support for different tilesets
+	local tileset = map.tilesets[1]
 	local currentTileset = tileset
 	
 	for i, layer in ipairs(map.layers) do
@@ -74,13 +74,13 @@ function tiledLoader:spawnSpecialTile(tile, x, y, w, h, properties)
 end
 
 function tiledLoader:spawnObject(object)
-	local args = {
+	--[[local args = {
 		game = self.game,
 		x = object.x, y = object.y, col = false,
 		w = object.width, h = object.height,
 		img = "tile1"
 	}
-	self.game:addEnt(wall, args)
+	self.game:addEnt(wall, args)]]
 end
 
 function tiledLoader:update()

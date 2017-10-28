@@ -2,6 +2,7 @@ local collisionManager = require "game/collisionManager"
 local inputManager = require "game/inputManager"
 local cameraManager = require "game/cameraManager"
 local tiledLoader = require "game/tiledLoader"
+local gameUI = require "game/gameUI"
 
 local game = {}
 
@@ -20,6 +21,8 @@ function game:init()
 	self.camMan = self:addSystem(cameraManager)
 	self.inputMan = self:addSystem(inputManager)
 	self.tiledLoader = self:addSystem(tiledLoader)
+
+	self.ui = self:addSystem(gameUI)
 
 	--entities
 	self.ent = {}
@@ -107,6 +110,10 @@ function game:draw()
 					comp:draw()
 				end
 			end
+		end
+
+		for i, system in ipairs(self.system) do
+			if system.draw then system:draw() end
 		end
 	
 	end

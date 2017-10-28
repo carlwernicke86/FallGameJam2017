@@ -10,7 +10,7 @@ function potionThrower:initialize(args)
 	local waterPotion = require("game/potionData/waterPotion")
 	local healthPotion = require("game/potionData/healthPotion")
 	self.potions = {waterPotion, healthPotion}
-	self.ingredients = {1, 1}
+	self.charge = {1, 1}
 	self.potionIndex = 1
 
 	--register a new input mapping for throwing potions

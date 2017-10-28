@@ -1,4 +1,5 @@
 local waterPotion = {
+	name = "Water Potion";
 	img = "potion";
 	component = require("comp/potionComponent");
 	splashComponents = {

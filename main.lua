@@ -15,6 +15,7 @@ audio = require "audio"
 gameMode = {}
 gameMode.mainMenu = require "menu/mainMenu"
 gameMode.game = require "game/game"
+gameMode.instructionMenu = require "menu/instructionMenu"
 
 --other things
 debugger = require "debugger"

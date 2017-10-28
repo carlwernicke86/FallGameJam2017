@@ -1,9 +1,17 @@
 local component = require "comp/component"
 local potionThrower = class("potionThrower", component)
 
+local potion = require("ent/potion")
+
 function potionThrower:initialize(args)
 	component.initialize(self, args)
 	self.type = "potionThrower"
+
+	local waterPotion = require("game/potionData/waterPotion")
+	local healthPotion = require("game/potionData/healthPotion")
+	self.potions = {waterPotion, healthPotion}
+	self.ingredients = {1, 1}
+	self.potionIndex = 1
 
 	--register a new input mapping for throwing potions
 	self.parent.game.inputMan.map["attack"] = function()
@@ -14,12 +22,18 @@ function potionThrower:initialize(args)
 end
 
 function potionThrower:throwPotion()
+	local currentPotion = self.potions[self.potionIndex]
+
 	if not self.parent.die then
-		local potion = require("ent/potion")
 		local playerPhys = self.parent.phys
-		local ent = self.parent.game:addEnt(potion, {x=playerPhys.x+playerPhys.w/2, y=playerPhys.y})
-		ent.phys.vx = self.parent.controller.faceDir*275+playerPhys.vx/3
-		ent.phys.vy = -225+playerPhys.vy/2
+		local ent = self.parent.game:addEnt(potion, {
+			x=playerPhys.x+playerPhys.w/2, y=playerPhys.y,
+			gravity=currentPotion.gravity, component=currentPotion.component,
+			img=currentPotion.img, splashComponents=currentPotion.splashComponents,
+			splashColor = currentPotion.splashColor
+		})
+		ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
+		ent.phys.vy = currentPotion.vy+playerPhys.vy/2
 	end
 end
 

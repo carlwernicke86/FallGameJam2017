@@ -6,13 +6,17 @@ local splash = require "ent/splash"
 function potionComponent:initialize(args)
 	component.initialize(self, args)
 	self.type = "potionComponent"
-	self.color = {r=100, g=100, b=255}
+	self.splashComponents = args.splashComponents
+	self.splashColor = args.splashColor
 end
 
 function potionComponent:destroy(args)
 	local parent = self.parent
 	local phys = parent.phys
-	local ent = parent.game:addEnt(splash, {x=phys.x+phys.w/2-20, y=phys.y+phys.h/2-30, color=self.color})
+	local ent = parent.game:addEnt(splash, {
+		x=phys.x+phys.w/2, y=phys.y+phys.h/2-5, components=self.splashComponents,
+		color=self.splashColor
+	})
 end
 
 return potionComponent

@@ -25,7 +25,7 @@ function player:initialize(args)
 	self.healthBar = rectangle:new{
 		parent=self, name="healthBar", posParent=self.phys,
 		w=60, h=10, ox=-15, oy=-35,
-		color={r=255, g=50, b=50}
+		color={r=255, g=0, b=0}
 	}
 
 	self.healthBarUpdate = healthBarUpdate:new{

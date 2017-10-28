@@ -72,12 +72,6 @@ function platformerController:sideHit(args)
 end
 
 function platformerController:collisionDetected(cols)
-	for i, col in ipairs(cols) do
-		if col.other.parent.id == "pounder" and col.side == "in" then
-			self.phys.vx = self.phys.vx/2
-			self.phys.vy = self.phys.vy/2
-		end
-	end
 end
 
 return platformerController

@@ -12,6 +12,11 @@ function playerScript:collisionDetected(cols)
 			local func = lume.fn(game.endLevel, game)
 			game.endTasks[#game.endTasks+1] = func
 		end
+
+		if col.other.parent.id == "potionPickup" then
+			self.parent.potions:getPotion(col.other.parent.potion)
+			col.other.parent.die = true
+		end
 	end
 end
 

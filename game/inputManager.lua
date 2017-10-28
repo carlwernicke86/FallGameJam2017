@@ -4,11 +4,12 @@ function inputManager:initialize(parent)
 	self.game = parent
 	
 	self.bind = {
-		z = "jump", space = "jump",
-		left = "left", a = "left",
-		right = "right", d = "right",
-		up = "up", w = "up",
-		down = "down", s = "down",
+		z = "jump",
+		x = "attack",
+		left = "left",
+		right = "right",
+		up = "up",
+		down = "down",
 		m = "mute",
 		q = "debug"
 	}

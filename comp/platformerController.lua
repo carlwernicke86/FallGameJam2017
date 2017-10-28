@@ -19,7 +19,7 @@ end
 
 function platformerController:update(dt)
 	if not self.phys then self.phys = self.parent:getComponent("physics") end
-	if self.phys == nil then crash("platformerController error: No physics component found") end
+	if self.phys == nil then error("platformerController error: No physics component found") end
 	
 	--movement
 	local phys = self.phys

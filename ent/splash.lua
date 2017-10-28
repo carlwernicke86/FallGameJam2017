@@ -20,11 +20,8 @@ function splash:initialize(args)
 	
 	self:addComponent(self.phys)
 	--self:addComponent(self.rect)
-	self:addComponent(lifespan:new{parent=self, time=0.2})
-
-	for i, comp in ipairs(args.components) do
-		self:addComponent(comp:new{parent=self})
-	end
+	self.lifespan = lifespan:new{parent=self, time=0.2}
+	self:addComponent(self.lifespan)
 
 	--240 by 34
 	local grid = anim8.newGrid(60, 34, 240, 34)
@@ -35,6 +32,10 @@ function splash:initialize(args)
 		posParent=self.phys, ox=-6, oy=6, color=args.color
 	}
 	self:addComponent(self.img)
+
+	for i, comp in ipairs(args.components) do
+		self:addComponent(comp:new{parent=self})
+	end
 end
 
 return splash

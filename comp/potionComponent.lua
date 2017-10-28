@@ -15,7 +15,7 @@ function potionComponent:destroy(args)
 	local phys = parent.phys
 	local ent = parent.game:addEnt(splash, {
 		x=phys.x+phys.w/2, y=phys.y+phys.h/2-5, components=self.splashComponents,
-		color=self.splashColor
+		color=val(self.splashColor)
 	})
 end
 

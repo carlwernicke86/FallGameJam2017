@@ -64,3 +64,8 @@ function darken(r,g,b,amt)
 	b = b * amt
 	return r, g, b
 end
+
+function val(x)
+	if type(x) == "function" then return x() end
+	return x
+end

@@ -11,7 +11,13 @@ local waterPotion = {
 		require("comp/waterSplash");
 		require("comp/rocketSplash");
 	};
-	splashColor = {r=255, g=50, b=255, a=255};
+	splashColor = function()
+		local r, g, b = getHue(love.math.random()*255)
+		return {r=r, g=g, b=b}
+	end;
+	--splashColor = {r=255, g=50, b=255, a=255};
+	playerAnimation = animation;
+	playerAnimImg = getImg("proper player option 3");
 	vx = 50;
 	vy = -420;
 	gravity = 1600;

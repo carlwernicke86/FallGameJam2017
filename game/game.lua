@@ -34,7 +34,7 @@ function game:enter()
 	--local wall = require("ent/wall")
 	--self:addEnt(wall, {x=0, y=200, w=500, h=10})
 
-	self.tiledLoader:loadLevel("newtileset")
+	self.tiledLoader:loadLevel("level5")
 
 	--other stuff
 	local phys = self.player:getComponent("physics")

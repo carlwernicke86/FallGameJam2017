@@ -4,7 +4,7 @@ function gameObject:initialize(args)
 	self.id = "gameObject"
 	self.name = args.name or "unnamed"
 	self.component = {}
-	self.die = false --remove on next frame
+	self.die = false --remove at end of frame
 	self.game = args.game --the game
 end
 

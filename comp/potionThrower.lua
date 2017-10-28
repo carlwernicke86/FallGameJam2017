@@ -27,6 +27,8 @@ function potionThrower:initialize(args)
 		if potions ~= nil and (not player.die) then potions:switchPotion() end
 	end
 
+	self:setPlayerColor()
+
 end
 
 function potionThrower:throwPotion()
@@ -46,6 +48,11 @@ end
 function potionThrower:switchPotion()
 	self.potionIndex = self.potionIndex + 1
 	if self.potionIndex > #self.potions then self.potionIndex = 1 end
+	self:setPlayerColor()
+end
+
+function potionThrower:setPlayerColor()
+	self.parent.overlay.color = self.potions[self.potionIndex].splashColor
 end
 
 return potionThrower

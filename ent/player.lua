@@ -19,6 +19,7 @@ function player:initialize(args)
 
 	self.phys = physics:new{parent=self, x=x, y=y, w=32, h=32-6, gravity=true}
 	self.img = image:new{parent=self, name="image", img="proper player", posParent=self.phys, ox=0, oy=-6}
+	self.overlay = image:new{parent=self, name="image", img="playerOverlay", posParent=self.phys, ox=0, oy=-6}
 	self.playerScript = playerScript:new{parent=self}
 	self.controller = platformerController:new{parent=self}
 	self.potions = potionThrower:new{parent=self}
@@ -36,6 +37,7 @@ function player:initialize(args)
 	
 	self:addComponent(self.controller)
 	self:addComponent(self.img)
+	self:addComponent(self.overlay)
 	self:addComponent(self.phys)
 	self:addComponent(self.playerScript)
 	self:addComponent(self.potions)

@@ -31,7 +31,7 @@ function game:init()
 	--entities
 	self.ent = {}
 
-	self.levels = {"newtileset", "lvl_tutorial", "lvl_wall", "lvl_spike", "lvl_bomb", "lvl_hardplatform"}
+	self.levels = {"newtileset", "testmap", "lvl_tutorial", "lvl_wall", "lvl_spike", "lvl_bomb", "lvl_hardplatform", "level5"}
 	self.levelIndex = 1
 
 end

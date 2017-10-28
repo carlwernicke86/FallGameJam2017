@@ -6,6 +6,11 @@
    <property name="type" value="fire"/>
   </properties>
  </tile>
+ <tile id="3">
+  <properties>
+   <property name="type" value="breakableWall"/>
+  </properties>
+ </tile>
  <tile id="4">
   <properties>
    <property name="type" value="exit"/>

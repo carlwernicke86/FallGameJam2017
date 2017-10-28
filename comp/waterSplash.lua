@@ -8,7 +8,7 @@ end
 
 function waterSplash:collisionDetected(cols)
 	for i, col in ipairs(cols) do
-		if col.other.parent.id == "fire" then
+		if col.other.parent.id == "fire" or col.other.parent.id == "breakableWall" then
 			col.other.parent.die = true
 		end
 	end

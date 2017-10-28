@@ -53,7 +53,18 @@ function potionThrower:switchPotion()
 end
 
 function potionThrower:setPlayerColor()
-	self.parent.overlay.color = self.potions[self.potionIndex].splashColor
+	local player = self.parent
+	local potion = self.potions[self.potionIndex]
+
+	if potion.playerAnimation then
+		player.overlay.img = potion.playerAnimImg
+		player.overlay.color = {r=255,g=255,b=255}
+		player.overlay.animation = potion.playerAnimation
+	else
+		player.overlay.img = getImg("playerOverlay")
+		player.overlay.color = potion.splashColor
+		player.overlay.animation = nil
+	end
 end
 
 return potionThrower

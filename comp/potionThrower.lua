@@ -9,7 +9,8 @@ function potionThrower:initialize(args)
 
 	local waterPotion = require("game/potionData/waterPotion")
 	local healthPotion = require("game/potionData/healthPotion")
-	self.potions = {waterPotion, healthPotion}
+	local rocketPotion = require("game/potionData/rocketPotion")
+	self.potions = {waterPotion, healthPotion, rocketPotion}
 	self.charge = {1, 1}
 	self.potionIndex = 1
 

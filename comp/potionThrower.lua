@@ -51,6 +51,12 @@ function potionThrower:throwPotion()
 		})
 		ent.phys.vx = self.parent.controller.faceDir*currentPotion.vx+playerPhys.vx/3
 		ent.phys.vy = currentPotion.vy+playerPhys.vy/2
+
+		if currentPotion.name == "ERASE" then
+			self.potions[#self.potions] = nil
+			self.potionIndex = self.potionIndex - 1
+			self:setPlayerColor()
+		end
 	end
 end
 

@@ -32,11 +32,12 @@ function game:init()
 	self.ent = {}
 
 	self.levels = {"lvl_tutorial", "lvl_wall", "lvl_spike", "lvl_bomb", "lvl_hardplatform", "level5", "testmap", "erase_level", "lvl_final"}
-	self.levelIndex = 1
+	self.levelIndex = 9
 
 end
 
 function game:enter()
+	audio:playLooping("bgm")
 	self:nextLevel()
 end
 

@@ -68,7 +68,9 @@ function platformerController:update(dt)
 end
 
 function platformerController:jump()
-	if self.phys.onGround or self.hax then self.phys.vy = -self.jumpForce end
+	if self.phys ~= nil then
+		if self.phys.onGround or self.hax then self.phys.vy = -self.jumpForce end
+	end
 end
 
 function platformerController:sideHit(args)

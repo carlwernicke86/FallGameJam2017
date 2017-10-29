@@ -16,4 +16,9 @@
    <property name="type" value="exit"/>
   </properties>
  </tile>
+ <tile id="6">
+  <properties>
+   <property name="type" value="spikes"/>
+  </properties>
+ </tile>
 </tileset>

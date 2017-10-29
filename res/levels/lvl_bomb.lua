@@ -8,7 +8,7 @@ return {
   height = 42,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 4,
+  nextobjectid = 5,
   properties = {},
   tilesets = {
     {
@@ -160,6 +160,21 @@ return {
           properties = {
             ["potion"] = "rocketPotion",
             ["type"] = "potionPickup"
+          }
+        },
+        {
+          id = 4,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 0,
+          width = 2880,
+          height = 1344,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["type"] = "bounds"
           }
         }
       }

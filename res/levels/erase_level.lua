@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 6,
+  nextobjectid = 7,
   properties = {},
   tilesets = {
     {
@@ -51,6 +51,12 @@ return {
           id = 4,
           properties = {
             ["type"] = "exit"
+          }
+        },
+        {
+          id = 6,
+          properties = {
+            ["type"] = "spikes"
           }
         }
       }
@@ -102,7 +108,23 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 6,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 0,
+          width = 1600,
+          height = 640,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["type"] = "bounds"
+          }
+        }
+      }
     },
     {
       type = "objectgroup",

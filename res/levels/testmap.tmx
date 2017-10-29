@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" nextobjectid="4">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="60" height="20" tilewidth="32" tileheight="32" nextobjectid="5">
  <tileset firstgid="1" source="../tilesets/tileset.tsx"/>
  <layer name="Tile Layer 1" width="60" height="20">
   <data encoding="csv">
@@ -35,6 +35,11 @@
    <properties>
     <property name="potion" value="waterPotion"/>
     <property name="type" value="potionPickup"/>
+   </properties>
+  </object>
+  <object id="4" x="0" y="0" width="1920" height="640">
+   <properties>
+    <property name="type" value="bounds"/>
    </properties>
   </object>
  </objectgroup>

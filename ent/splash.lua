@@ -8,6 +8,8 @@ local image = require "comp/render/image"
 local rectangle = require "comp/render/rectangle"
 local lifespan = require "comp/lifespan"
 
+local sound = love.audio.newSource("res/sound/bottlebreakshort.wav", "static")
+
 function splash:initialize(args)
 	gameObject.initialize(self, args)
 	self.id = "splash"
@@ -36,6 +38,9 @@ function splash:initialize(args)
 	for i, comp in ipairs(args.components) do
 		self:addComponent(comp:new{parent=self})
 	end
+	
+	sound:setVolume(0.5)
+	sound:play()
 end
 
 return splash

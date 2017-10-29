@@ -39,7 +39,7 @@ function instructionMenu:draw()
 	love.graphics.draw(spikeImage, 150, 560, 0, 3, 3)
 	
 	love.graphics.setColor(100, 50, 255)
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 50)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 50)
 	love.graphics.print("= YOU", 275, 225)
 	love.graphics.print("= POTION", 275, 300)
 	love.graphics.print("= END", 275, 375)
@@ -56,11 +56,11 @@ function instructionMenu:draw()
 	love.graphics.print("POTION", 600, 485)
 	love.graphics.print("RELOAD = R", 600, 600)
 	
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 100)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 100)
 	local w = love.graphics.getFont():getWidth("INSTRUCTIONS")
 	love.graphics.print("INSTRUCTIONS", love.graphics.getWidth()/2-w/2, 25)
 	
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 24)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 24)
 	suit.draw()
 end
 

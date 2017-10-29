@@ -21,10 +21,10 @@ function creditsMenu:update(dt)
 end
 
 function creditsMenu:draw()
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 100)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 100)
 	local w = love.graphics.getFont():getWidth("DEVELOPERS")
 	love.graphics.print("DEVELOPERS", love.graphics.getWidth()/2-w/2, 25)
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 75)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 75)
 	
 	width = love.graphics.getFont():getWidth("CARL")
 	love.graphics.print("CARL", love.graphics.getWidth()/2 - width/2, 150)
@@ -36,7 +36,7 @@ function creditsMenu:draw()
 	love.graphics.print("VICTOR", love.graphics.getWidth()/2 - width/2, 375)
 	
 	
-	love.graphics.setNewFont("/res/font/CourierCode-bold.ttf", 24)
+	love.graphics.setNewFont("/res/font/couriercode-bold.ttf", 24)
 	suit.draw()
 end
 

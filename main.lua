@@ -34,7 +34,7 @@ function love.load()
 	
 	--TODO remove
 	defaultFont = love.graphics.getFont()
-	courierCodeBold = love.graphics.newFont("/res/font/CourierCode-bold.ttf", 24)
+	courierCodeBold = love.graphics.newFont("/res/font/couriercode-bold.ttf", 24)
 	love.graphics.setFont(courierCodeBold)
 	
 	settings = {

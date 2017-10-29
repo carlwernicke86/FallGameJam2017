@@ -44,6 +44,10 @@ function health:collisionDetected(cols)
 		if col.other.parent.id == "fire" then
 			self:startBurning()
 		end
+
+		if col.other.parent.id == "spikes" then
+			self.hp = 0
+		end
 	end
 end
 

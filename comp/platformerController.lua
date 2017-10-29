@@ -37,6 +37,8 @@ function platformerController:update(dt)
 
 	if moveDir < 0 then self.faceDir = -1 end
 	if moveDir > 0 then self.faceDir = 1 end
+	self.parent.img.sx = self.faceDir
+	self.parent.img.ox = (self.faceDir-1)*-16
 
 	if moveDir ~= 0 then
 		phys.vx = phys.vx - (phys.vx - self.speed*moveDir)*accel*dt

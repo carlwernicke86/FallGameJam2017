@@ -10,6 +10,8 @@ function eraseSplash:initialize(args)
 	self.parent.game.playerDeath.endGame = true
 	self.parent.game.ui.endGame = true
 	love.filesystem.write("save.txt", "erase")
+	audio:clearAudio()
+	audio:playSound("glitch")
 end
 
 function eraseSplash:update(dt)

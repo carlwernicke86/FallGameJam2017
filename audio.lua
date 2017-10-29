@@ -18,7 +18,7 @@ function audio:playLooping(name)
 end
 
 function audio:clearAudio()
-	for i, source in ipairs(self.loopingSources) do
+	for v, source in pairs(self.loopingSources) do
 		source:stop()
 	end
 	self.loopingSources = {}

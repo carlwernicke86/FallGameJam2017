@@ -37,6 +37,7 @@ function game:init()
 end
 
 function game:enter()
+	audio:playLooping("bgm")
 	self:nextLevel()
 end
 

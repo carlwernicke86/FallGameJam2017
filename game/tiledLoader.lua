@@ -83,6 +83,9 @@ function tiledLoader:spawnObject(object)
 		local pickup = require("ent/potionPickup")
 		self.game:addEnt(pickup, {x=object.x, y=object.y, potion=object.properties.potion})
 	end
+	if object.properties.type == "bounds" then
+		self.game.camMan:setBounds(object.x, object.y, object.x+object.width, object.y+object.height)
+	end
 end
 
 function tiledLoader:update()

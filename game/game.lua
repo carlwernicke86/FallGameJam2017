@@ -50,6 +50,7 @@ end
 function game:unloadLevel()
 	self.ent = {}
 	self.colMan:resetWorld()
+	self.camMan:unbound()
 	self.ui:reset()
 end
 

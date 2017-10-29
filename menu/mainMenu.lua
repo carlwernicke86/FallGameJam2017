@@ -1,5 +1,6 @@
 local suit = require "libs/suit"
 
+local music = love.audio.newSource("res/sound/Kawai Kitsune.mp3", "static")
 local background = love.graphics.newImage("res/img/title_img.png")
 local buttonWidth = 200
 local title = love.graphics.newImage("res/img/title.png")
@@ -17,7 +18,7 @@ function mainMenu:enter()
 end
 
 function mainMenu:update(dt)
-	
+	music:play()
 	
 	--used ui stuff
 	suit.layout:reset(love.graphics.getWidth()/2 - buttonWidth/2, love.graphics.getHeight()/2, 20, 20) --originx, originy, paddingx, paddingy
@@ -38,6 +39,7 @@ function mainMenu:update(dt)
 	end
 	
 	if start.hit then
+		music:stop()
 		self:startGame()
 	end
 	

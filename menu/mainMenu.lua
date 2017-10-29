@@ -76,7 +76,7 @@ function mainMenu:showCredits()
 end
 
 function mainMenu:keypressed(key)
-	self:startGame()
+	--self:startGame()
 end
 
 function mainMenu:mousepressed() --todo add button

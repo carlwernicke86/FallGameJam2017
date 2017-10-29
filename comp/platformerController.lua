@@ -1,5 +1,8 @@
 local component = require "comp/component"
 local platformerController = class("platformerController", component)
+local sound = love.audio.newSource("res/sound/jump.wav", "static")
+sound:setVolume(0.5)
+jump_sound = false
 
 function platformerController:initialize(args)
 	component.initialize(self, args)
@@ -20,6 +23,7 @@ function platformerController:initialize(args)
 end
 
 function platformerController:update(dt)
+	
 	if not self.phys then self.phys = self.parent:getComponent("physics") end
 	if self.phys == nil then error("platformerController error: No physics component found") end
 	
@@ -47,8 +51,14 @@ function platformerController:update(dt)
 	--jumping/falling
 	if phys.vy > 0 then
 		phys.gravScale = self.lowGrav
+		jump_sound = false
 	else
-		if input:keyDown("jump") then phys.gravScale = self.lowGrav
+		if input:keyDown("jump") then 
+			phys.gravScale = self.lowGrav
+			if not jump_sound then
+				sound:play()
+				jump_sound = true
+			end
 		else phys.gravScale = self.highGrav end
 		if not self.airControl then phys.gravScale = self.lowGrav end
 	end

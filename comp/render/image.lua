@@ -12,6 +12,8 @@ function image:initialize(args)
 	self.img = getImg(args.img)
 	
 	self.w, self.h = self.img:getDimensions()
+
+	self.sx = 1
 	
 	--what we need to set quad:
 	--xPos, yPos
@@ -41,12 +43,12 @@ function image:draw()
 	local sx = 1; local sy = 1
 
 	if self.animation then
-		self.animation:draw(self.img, self.x+self.ox, self.y+self.oy, 0, sx, sy)
+		self.animation:draw(self.img, self.x+self.ox*self.sx, self.y+self.oy, 0, self.sx, sy)
 	else
 		if self.quad ~= nil then
-			love.graphics.draw(self.img, self.quad, math.floor(self.x+self.ox), math.floor(self.y+self.oy), 0, sx, sy)
+			love.graphics.draw(self.img, self.quad, math.floor(self.x+self.ox), math.floor(self.y+self.oy), 0, self.sx, sy)
 		else
-			love.graphics.draw(self.img, self.x+self.ox, self.y+self.oy, 0, sx, sy)
+			love.graphics.draw(self.img, self.x+self.ox, self.y+self.oy, 0, self.sx, sy)
 		end
 	end
 end
